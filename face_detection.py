@@ -1,5 +1,3 @@
-import numpy as np
-import time
 
 from mtcnn import detect_face, create_mtcnn
 import tensorflow as tf
@@ -115,8 +113,5 @@ def detect(image, threshold=0.5, minsize=30):
 
     return bboxes,label_tests,labels,scores
 
-if __name__ == '__main__':
-    img = cv2.imread("examples/face.jpg")
-    bboxes, label_tests, labels, scores = detect(img)
-    CVShowBoxes(img,bboxes,label_tests,labels,scores,waitkey=0)
+
 
