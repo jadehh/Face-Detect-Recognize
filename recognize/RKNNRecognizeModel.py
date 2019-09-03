@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 # 作者：2019/9/2 by jade
 # 邮箱：jadehh@live.com
-# 描述：TODO
+# 描述：RKNN人脸特征提取
 # 最近修改：2019/9/2  下午5:09 modify by jade
 from rknn.api import RKNN
 import cv2
