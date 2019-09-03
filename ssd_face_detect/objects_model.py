@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # 作者：Create on 2019/7/18 14:31 by jade
 # 邮箱：jadehh@live.com
-# 描述：目标检测类
+# 描述：目标检测基础类
 # 最近修改：2019/7/18 14:31 modify by jade
 import tensorflow as tf
 from jade import *
