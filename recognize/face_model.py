@@ -8,7 +8,7 @@
 
 import numpy as np
 import mxnet as mx
-import sklearn
+from sklearn import preprocessing
 
 
 
@@ -49,6 +49,6 @@ class FaceModel:
     db = mx.io.DataBatch(data=(data,))
     self.model.forward(db, is_train=False)
     embedding = self.model.get_outputs()[0].asnumpy()
-    embedding = sklearn.preprocessing.normalize(embedding).flatten()
+    embedding = preprocessing.normalize(embedding).flatten()
     return embedding
 
