@@ -9,16 +9,17 @@ from recognize.MxRecognizeModel import recModel
 from mtcnn.face_detection import detect
 from jade import *
 def predict_names(img,x_name):
-    img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
-    bboxes, label_tests, labels, scores,face_img = detect(img)
+    detect_results,face_img = detect(img)
+    #CVShowBoxes(img, detect_results, waitkey=0)
     if face_img.shape[0] > 0:
+        recModel.load_facebank()
         y_name = recModel.compare_feature(face_img)
     else:
         y_name = (np.array([['None']]),np.array([0]))
     if x_name == y_name[0][0]:
         return True,x_name,y_name[0][0],y_name[1][0]
     elif y_name[0][0] == "None":
-        return False,x_name,"没有检测到人脸",0
+        return True,x_name,"没有检测到人脸",0
     else:
         return False,x_name,y_name[0][0],y_name[1][0]
 if __name__ == '__main__':
@@ -40,15 +41,23 @@ if __name__ == '__main__':
                 if issuccess:
                     truth = truth + 1
                 # else:
-                #     text = "truth label = {}, predict label = {} , score = {}".format(x_name,y_name,score)
-                #     index = 0
-                #     for text_split in text.split(","):
-                #         cv2.putText(img,text_split,(10,10+20*index),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,0,0),1)
-                #         index = index + 1
-                #     cv2.imshow("wrong",img)
-                #     cv2.waitKey(0)
-                #     print(os.path.join(root_path, name, path))
-                #     print("预测错误")
+                #     # text = "truth label = {}, predict label = {} , score = {}".format(x_name,y_name,score)
+                #     # index = 0
+                #     # for text_split in text.split(","):
+                #     #     cv2.putText(img,text_split,(10,10+20*index),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,0,0),1)
+                #     #     index = index + 1
+                #     # cv2.imshow("wrong",img)
+                #     # cv2.waitKey(0)
+                #     # print(os.path.join(root_path, name, path))
+                #     # print("预测错误")
+                # text = "truth label = {}, predict label = {} , score = {}".format(x_name, y_name, score)
+                # index = 0
+                # for text_split in text.split(","):
+                #     cv2.putText(img, text_split, (10, 10 + 20 * index), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 0, 0), 1)
+                #     index = index + 1
+                # cv2.imshow("wrong", img)
+                # cv2.waitKey(0)
+                # print(os.path.join(root_path, name, path))
                 num = num + 1
             NoLinePrint("预测人脸名称",processBar)
     print("acc = {}".format(truth/float(num)))

@@ -430,7 +430,8 @@ class ObjectModel:
                         scores_out.append(score)
                         class_names_out.append(class_name)
                         classes_out.append(cls_id)
-            return boxes_out,class_names_out,classes_out,scores_out
+            detectionResult = DetectResultModel(boxes_out,class_names_out,classes_out,scores_out)
+            return detectionResult
 
         if (os.path.isfile(self.model_path)):
             with self.sess.as_default():

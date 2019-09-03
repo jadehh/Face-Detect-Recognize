@@ -14,7 +14,7 @@ import argparse
 parser = argparse.ArgumentParser(description='face model test')
 # general
 parser.add_argument('--image-size', default='112,112', help='')
-parser.add_argument('--model', default='model/rec_model_512/model,0', help='path to load model.')
+parser.add_argument('--model', default='model/mxnet_rec_model_128/model,0', help='path to load model.')
 parser.add_argument('--gpu', default=0, type=int, help='gpu id')
 parser.add_argument('--flip', default=0, type=int, help='whether do lr flip aug')
 parser.add_argument('--threshold', default=1.24, type=float, help='ver dist threshold')
@@ -23,20 +23,22 @@ args = parser.parse_args()
 class RecModel():
     def __init__(self,args):
         self.model = FaceModel(args)
-        self.features, self.names = self.load_facebank()
         self.threshold = 1.24
 
 
     def extract_features(self,img):
+        if img.shape[0] > 112:
+            img = cv2.resize(img, (112, 112), interpolation=cv2.INTER_AREA)
+        if img.shape[0] < 112:
+            img = cv2.resize(img, (112, 112), interpolation=cv2.INTER_CUBIC)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = np.transpose(img,(2,0,1))
         emb = self.model.get_feature(img)
         return emb
 
     def load_facebank(self):
-        embeddings = np.load('facebank_mxnet_512.npy')
-        names = np.load('names_mxnet_512.npy')
-        return embeddings, names
+        self.features = np.load('npy/facebank_mtcnn_mxnet_128.npy')
+        self.names = np.load('npy/names_mtcnn_mxnet_128.npy')
 
 
 
@@ -47,7 +49,10 @@ class RecModel():
         minimum = np.min(dist, axis=1)
         min_idx = np.argmin(dist,axis=1)
         min_idx[minimum > self.threshold] = -1 # if no match, set idx to -1
-        return self.names[min_idx], minimum
+        if min_idx == -1:
+            return (np.array([['None']]),np.array([0]))
+        else:
+            return self.names[min_idx], minimum
 
 recModel = RecModel(args)
 
