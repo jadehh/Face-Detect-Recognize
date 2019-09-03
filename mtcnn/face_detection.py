@@ -6,7 +6,7 @@ import math
 from jade import *
 face_crop_margin = 32
 face_crop_size = 160
-PRETREINED_MODEL_DIR = 'model'
+PRETREINED_MODEL_DIR = 'model/mtcnn_model'
 
 def _setup_mtcnn():
     config = tf.ConfigProto()
@@ -92,6 +92,7 @@ def calculate_euler(img, landmark):
     return euler
 
 def detect(image, threshold=0.5, minsize=30):
+    image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
     # img = img_to_np(image)
     # face detection parameters
     threshold = [0.6, 0.7, 0.7]  # three steps's threshold
@@ -121,7 +122,7 @@ def detect(image, threshold=0.5, minsize=30):
         label_texts.append("face")
         labels.append(1)
         scores.append(bounding_boxes[idx][4])
-    return bboxes, label_texts, labels, scores,img
+    return DetectResultModel(bboxes, label_texts, labels, scores),img
 
 
 
