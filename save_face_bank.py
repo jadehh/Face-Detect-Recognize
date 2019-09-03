@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 # 作者：2019/8/26 by jade
 # 邮箱：jadehh@live.com
-# 描述：提取特征后，保存人脸特征数据
+# 描述：提取特征后保存人脸特征数据
 # 最近修改：2019/8/26  下午5:31 modify by jade
 from mtcnn.face_detection import detect
 from recognize.RKNNRecognizeModel import recModel
