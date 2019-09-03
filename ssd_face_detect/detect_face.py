@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 # 作者：Create on 2019/7/18 16:58 by jade
 # 邮箱：jadehh@live.com
-# 描述：图片目标检测预测
+# 描述： SSD 人脸检测类
 # 最近修改：2019/7/18 16:58 modify by jade
 import argparse
 from jade import *
