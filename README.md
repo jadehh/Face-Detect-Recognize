@@ -5,6 +5,12 @@
 ```
   python face_detection.py
 ```
+### 人脸对齐
+```
+   关键点对齐
+   img = alignment(image, bounding_boxes[i][0:4], landmark, (112, 112))
+```
+
 ### 人脸特征向量提取
  
 ```
