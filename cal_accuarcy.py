@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 # 作者：2019/9/2 by jade
 # 邮箱：jadehh@live.com
-# 描述：计算人脸检测+人脸识别的准确率
+# 描述：计算人脸检测(mtcnn)+人脸识别的准确率(mxnet)
 # 最近修改：2019/9/2  下午6:04 modify by jade
 
 from recognize.MxRecognizeModel import recModel
