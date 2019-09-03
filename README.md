@@ -13,8 +13,14 @@
   得到的是一个人脸特征向量,shape = [None,128]
 ```
 model文件夹下面存放的是人脸检测模型+人脸识别模型
-[人脸检测模型下载地址]()
-[人脸识别模型下载地址](asa)
+
+[人脸检测模型(mtcnn model)](https://pan.baidu.com/s/1OKDLM_y0afz3h2KUnihhVQ)          提取码:vnhq
+
+[人脸识别模型 (mxnet_rec_model_128)](https://pan.baidu.com/s/1WYwyDYjtap6zdUnKI8lMqQ) 提取码: n759
+
+[人脸识别模型 (mxnet_rec_model_512)](https://pan.baidu.com/s/1FCmvoSeXLlxcRmm7oNCMvA) 提取码: h4gc
+
+[人脸识别模型 (tf_rec_model_512)](https://pan.baidu.com/s/1qjghULTE4-QVqgKe2fp6Ig) 提取码: vij8
 
 
 
