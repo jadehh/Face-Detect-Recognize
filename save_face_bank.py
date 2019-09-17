@@ -23,6 +23,7 @@ if __name__ == '__main__':
     processBar = ProcessBar()
     save_names = []
     processBar.count = len(names)
+    image_paths = []
     for name in names:
         processBar.start_time = time.time()
         embs = []
@@ -34,13 +35,15 @@ if __name__ == '__main__':
         if len(embs) > 1:
             features.append(np.mean(np.reshape(np.array(embs),[embs[0].shape[0]]),axis=0))
             save_names.append(name)
+            image_paths.append(os.path.join(name,path))
         elif len(embs) == 1:
             features.append(np.reshape(np.array(embs),[embs[0].shape[0]]))
             save_names.append(name)
+            image_paths.append(os.path.join(name,path))
 
         NoLinePrint("extarct features",processBar)
-    np.save("npy/names_mtcnn_rknn_do_quantization_128.npy",np.array(save_names))
-    np.save("npy/facebank_mtcnn_rknn_do_quantization_128.npy",np.array(features))
+    np.save("npy/names_mtcnn_rknn_128.npy",np.array(save_names))
+    np.save("npy/facebank_mtcnn_rknn_128.npy",np.array(features))
 
-
+    np.save("npy/image_path_mtcnn_rknn_128.npy",np.array(image_paths))
 
